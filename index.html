@@ -3,73 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025 期末复习资料站</title>
+    <title>2025 期末复习站 - UI V2</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; background-color: #f3f4f6; }
+        .main-card {
+            transition: all 0.2s ease;
+            transform: translateY(0);
+            border-left: 5px solid #3b82f6;
+        }
+        .main-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
-<body class="bg-slate-100 min-h-screen py-10 px-4">
+<body class="bg-slate-100 min-h-screen py-8 px-4">
 
-    <div class="max-w-2xl mx-auto">
-        <div class="bg-blue-700 text-white p-6 rounded-t-2xl shadow-lg text-center">
-            <h1 class="text-3xl font-bold mb-2">📚 2025 期末复习资料</h1>
-            <p class="text-blue-100 text-sm opacity-80">操作系统(OS) / 综合复习</p>
+    <div class="max-w-4xl mx-auto">
+        <div class="bg-blue-800 text-white p-6 rounded-t-xl shadow-2xl text-center">
+            <h1 class="text-3xl font-bold mb-1">💯 操作系统期末高分复习站</h1>
+            <p class="text-blue-200 text-sm opacity-80">您的永久线上复习资料库 | 核心考点已标记</p>
         </div>
 
-        <div class="bg-white p-6 rounded-b-2xl shadow-lg border border-slate-200 space-y-4">
-            
-            <div class="space-y-2">
-                <h2 class="font-bold text-slate-700 border-b pb-2 mb-3 flex items-center">
-                    <span class="mr-2">💻</span> 操作系统计算题演示
+        <div class="bg-white p-6 rounded-b-xl shadow-lg border-x border-b border-slate-200 space-y-8">
+
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 border-b-2 border-amber-400 pb-2 mb-4 flex items-center">
+                    <span class="mr-2 text-amber-500">🔥</span> 核心大题模拟 (占分比高)
                 </h2>
                 
-                <a href="OS1多道批处理.html" class="flex items-center justify-between p-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg transition border border-blue-100 group">
-                    <span class="font-bold">OS1 多道批处理</span>
-                    <span class="text-xs bg-white px-2 py-1 rounded text-blue-600 group-hover:bg-blue-200">演示</span>
-                </a>
-                
-                <a href="OS3银行家算法.html" class="flex items-center justify-between p-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg transition border border-blue-100 group">
-                    <span class="font-bold">OS3 银行家算法</span>
-                    <span class="text-xs bg-white px-2 py-1 rounded text-blue-600 group-hover:bg-blue-200">演示</span>
-                </a>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    
+                    <a href="OS3银行家算法.html" class="main-card block p-5 bg-white rounded-lg shadow-md hover:bg-blue-50/50">
+                        <div class="flex items-center gap-3">
+                            <span class="text-blue-600 text-3xl font-bold">03</span>
+                            <div>
+                                <div class="font-bold text-slate-700">银行家算法</div>
+                                <div class="text-xs text-slate-500 mt-1">难度高 | 掌握安全序列判定</div>
+                            </div>
+                        </div>
+                    </a>
 
-                <a href="OS4分页存储地址转换.html" class="flex items-center justify-between p-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg transition border border-blue-100 group">
-                    <span class="font-bold">OS4 分页存储地址转换</span>
-                    <span class="text-xs bg-white px-2 py-1 rounded text-blue-600 group-hover:bg-blue-200">演示</span>
-                </a>
+                    <a href="OS1多道批处理.html" class="main-card block p-5 bg-white rounded-lg shadow-md hover:bg-blue-50/50">
+                        <div class="flex items-center gap-3">
+                            <span class="text-blue-600 text-3xl font-bold">01</span>
+                            <div>
+                                <div class="font-bold text-slate-700">多道批处理调度</div>
+                                <div class="text-xs text-slate-500 mt-1">计算甘特图和 CPU 利用率</div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="OS4分页存储地址转换.html" class="main-card block p-5 bg-white rounded-lg shadow-md hover:bg-blue-50/50">
+                        <div class="flex items-center gap-3">
+                            <span class="text-blue-600 text-3xl font-bold">04</span>
+                            <div>
+                                <div class="font-bold text-slate-700">分页存储地址转换</div>
+                                <div class="text-xs text-slate-500 mt-1">地址映射计算</div>
+                            </div>
+                        </div>
+                    </a>
 
-                <a href="OS5LRU算法.html" class="flex items-center justify-between p-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg transition border border-blue-100 group">
-                    <span class="font-bold">OS5 LRU算法</span>
-                    <span class="text-xs bg-white px-2 py-1 rounded text-blue-600 group-hover:bg-blue-200">演示</span>
-                </a>
+                    <a href="OS5LRU算法.html" class="main-card block p-5 bg-white rounded-lg shadow-md hover:bg-blue-50/50">
+                        <div class="flex items-center gap-3">
+                            <span class="text-blue-600 text-3xl font-bold">05</span>
+                            <div>
+                                <div class="font-bold text-slate-700">页面置换 (LRU)</div>
+                                <div class="text-xs text-slate-500 mt-1">考察缺页次数与内存管理</div>
+                            </div>
+                        </div>
+                    </a>
 
-                <a href="OS8最短寻道时间优先.html" class="flex items-center justify-between p-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg transition border border-blue-100 group">
-                    <span class="font-bold">OS8 最短寻道时间优先</span>
-                    <span class="text-xs bg-white px-2 py-1 rounded text-blue-600 group-hover:bg-blue-200">演示</span>
-                </a>
+                    <a href="OS8最短寻道时间优先.html" class="main-card block p-5 bg-white rounded-lg shadow-md hover:bg-blue-50/50">
+                        <div class="flex items-center gap-3">
+                            <span class="text-blue-600 text-3xl font-bold">08</span>
+                            <div>
+                                <div class="font-bold text-slate-700">磁盘调度 (SSTF)</div>
+                                <div class="text-xs text-slate-500 mt-1">计算寻道距离与顺序</div>
+                            </div>
+                        </div>
+                    </a>
 
-                <a href="OS9PV操作.html" class="flex items-center justify-between p-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg transition border border-blue-100 group">
-                    <span class="font-bold">OS9 PV操作</span>
-                    <span class="text-xs bg-white px-2 py-1 rounded text-blue-600 group-hover:bg-blue-200">演示</span>
-                </a>
+                    <a href="OS9PV操作.html" class="main-card block p-5 bg-white rounded-lg shadow-md hover:bg-blue-50/50">
+                        <div class="flex items-center gap-3">
+                            <span class="text-blue-600 text-3xl font-bold">09</span>
+                            <div>
+                                <div class="font-bold text-slate-700">PV 操作 (进程同步)</div>
+                                <div class="text-xs text-slate-500 mt-1">信号量与互斥/同步问题</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
 
-            <div class="space-y-2 pt-4">
-                <h2 class="font-bold text-slate-700 border-b pb-2 mb-3 flex items-center">
-                    <span class="mr-2">📝</span> 综合复习资料
+            <div class="pt-6">
+                <h2 class="text-2xl font-bold text-slate-800 border-b-2 border-slate-300 pb-2 mb-4 flex items-center">
+                    <span class="mr-2 text-slate-500">📋</span> 综合复习资料 (小题)
                 </h2>
                 
-                <a href="选择、判断、简答（1）.html" class="block p-3 bg-amber-50 hover:bg-amber-100 text-amber-900 rounded-lg transition border border-amber-100">
-                    📄 选择、判断、简答（1）
-                </a>
-                <a href="选择、判断、简答（2）.html" class="block p-3 bg-amber-50 hover:bg-amber-100 text-amber-900 rounded-lg transition border border-amber-100">
-                    📄 选择、判断、简答（2）
-                </a>
+                <div class="space-y-2">
+                    <a href="选择、判断、简答（1）.html" class="block p-4 bg-gray-50 hover:bg-gray-100 rounded-lg text-slate-700 transition">
+                        <span class="font-bold">选择、判断、简答（1）</span>
+                        <span class="text-xs text-slate-400 ml-2"> | 涵盖基础理论</span>
+                    </a>
+                    <a href="选择、判断、简答（2）.html" class="block p-4 bg-gray-50 hover:bg-gray-100 rounded-lg text-slate-700 transition">
+                        <span class="font-bold">选择、判断、简答（2）</span>
+                        <span class="text-xs text-slate-400 ml-2"> | 涵盖进阶知识点</span>
+                    </a>
+                </div>
             </div>
-
         </div>
 
         <div class="text-center mt-6 text-slate-400 text-xs">
-            祝大家逢考必过！💯
+            GitHub Pages 部署成功 | 祝大家逢考必过！
         </div>
+
     </div>
 
 </body>
