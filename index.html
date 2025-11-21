@@ -3,215 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025 期末复习总站</title>
+    <title>2025 期末复习作战指挥部</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入 Google Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
-    <!-- 引入 Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
 
     <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
         body {
             font-family: 'Noto Sans SC', sans-serif;
-            background-color: #f0f4f8;
+            background-color: #f8fafc;
+            /* 更加清爽的网格背景 */
             background-image: 
-                radial-gradient(#cbd5e1 1px, transparent 1px),
-                radial-gradient(#cbd5e1 1px, transparent 1px);
+                linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
             background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
+            min-height: 100vh;
         }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+        .bento-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.25rem;
+            box-shadow: var(--glass-shadow);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
         }
 
-        .glass-card:hover {
+        .bento-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: rgba(99, 102, 241, 0.4);
         }
 
-        .icon-box {
-            transition: transform 0.3s ease;
+        /* 考试时间轴样式 */
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid #e2e8f0;
         }
-        .glass-card:hover .icon-box {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        /* 装饰性手写字 */
-        .handwritten-bg {
-            font-family: 'Zhi Mang Xing', cursive;
+        .timeline-item::before {
+            content: '';
             position: absolute;
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 0;
+            left: -0.35rem;
+            top: 0.35rem;
+            width: 0.6rem;
+            height: 0.6rem;
+            border-radius: 50%;
+            background: #cbd5e1;
+            border: 2px solid #fff;
+        }
+        .timeline-item.active { border-left-color: #6366f1; }
+        .timeline-item.active::before { background: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.2); }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .urgent-badge {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center py-12 px-4 relative overflow-x-hidden">
+<body class="text-slate-800">
 
-    <!-- 背景装饰字 -->
-    <div class="handwritten-bg text-9xl top-10 left-10 -rotate-12">必过</div>
-    <div class="handwritten-bg text-9xl bottom-20 right-10 rotate-6">满绩</div>
-
-    <!-- 顶部标题 -->
-    <header class="text-center mb-16 z-10 relative">
-        <div class="inline-block bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3 shadow-lg uppercase tracking-wider">
-            Final Exam 2025
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-3">
+            <div class="bg-indigo-600 text-white p-2 rounded-xl shadow-lg shadow-indigo-200">
+                <span class="material-symbols-rounded text-3xl block">school</span>
+            </div>
+            <div>
+                <h1 class="text-2xl font-black tracking-tight text-slate-900">Final Exam <span class="text-indigo-600">2025</span></h1>
+                <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">期末复习作战指挥部</p>
+            </div>
         </div>
-        <h1 class="text-4xl md:text-5xl font-black text-slate-800 mb-2 tracking-tight">
-            期末复习<span class="text-indigo-600">总站</span>
-        </h1>
-        <p class="text-slate-500 font-medium">计算机科学与技术 | 核心考点 & 模拟试题</p>
-    </header>
+        
+        <div class="relative w-full md:w-80 group">
+            <span class="material-symbols-rounded absolute left-3 top-2.5 text-slate-400 group-focus-within:text-indigo-600 transition-colors">search</span>
+            <input type="text" id="searchInput" placeholder="搜索考点 (如: 死锁, C101...)" 
+                class="w-full bg-white text-slate-800 pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all shadow-sm font-medium text-sm">
+        </div>
+    </nav>
 
-    <!-- 内容网格 -->
-    <main class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 z-10">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+            
+            <div class="bento-card p-6 bg-gradient-to-br from-indigo-600 to-purple-700 text-white border-none flex flex-col justify-between relative overflow-hidden">
+                <span class="material-symbols-rounded absolute -right-6 -bottom-6 text-[10rem] opacity-10">timer</span>
+                
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="bg-white/20 backdrop-blur px-2 py-0.5 rounded text-xs font-bold urgent-badge">NEXT EXAM</span>
+                        <span class="text-indigo-200 text-xs font-bold uppercase">即将开始</span>
+                    </div>
+                    <h2 class="text-3xl font-black mt-2" id="nextExamName">加载中...</h2>
+                    <p class="text-indigo-100 text-sm mt-1 flex items-center gap-1">
+                        <span class="material-symbols-rounded text-sm">location_on</span>
+                        <span id="nextExamLoc">...</span>
+                    </p>
+                </div>
 
-        <!-- 1. 操作系统板块 -->
-        <section class="space-y-4">
-            <div class="flex items-center gap-2 mb-2 px-1">
-                <span class="material-symbols-rounded text-blue-600">dns</span>
-                <h2 class="text-xl font-bold text-slate-700">操作系统 (OS)</h2>
+                <div class="mt-6">
+                    <div class="flex items-end gap-2 font-mono">
+                        <div class="text-5xl font-bold tracking-tighter" id="countdownDays">0</div>
+                        <span class="text-sm text-indigo-200 mb-2 mr-2">天</span>
+                        <div class="text-3xl font-bold tracking-tighter opacity-80" id="countdownTime">00:00:00</div>
+                    </div>
+                    <p class="text-xs text-indigo-200/80 mt-2">稳住，我们能赢。</p>
+                </div>
             </div>
 
-            <!-- OS 大题突击 (重点) -->
-            <a href="OS大题.html" class="glass-card group block rounded-2xl p-6 border-l-4 border-l-blue-500 relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-blue-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg">
-                    重点
+            <div class="bento-card p-6 lg:col-span-2 bg-white">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-slate-700 flex items-center gap-2">
+                        <span class="material-symbols-rounded text-indigo-500">calendar_month</span> 
+                        考试日程表
+                    </h3>
+                    <span class="text-xs text-slate-400 bg-slate-100 px-2 py-1 rounded">来源: 教务系统截图</span>
                 </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-lg font-bold text-slate-800 group-hover:text-blue-600 transition-colors">大题突击合集</h3>
-                        <p class="text-sm text-slate-500 mt-1 leading-relaxed">
-                            涵盖 PV操作、银行家算法、分页地址转换、磁盘调度等 6 大计算题。
-                        </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="timeline-item active pb-2" id="item-os">
+                        <p class="text-xs font-bold text-indigo-600 mb-0.5">11月24日 (周日) 14:00</p>
+                        <h4 class="font-bold text-slate-800">操作系统原理</h4>
+                        <div class="flex items-center gap-1 mt-1.5">
+                            <span class="bg-red-100 text-red-700 text-xs font-mono px-1.5 py-0.5 rounded border border-red-200">C101</span>
+                            <span class="text-xs text-slate-500">首战必胜</span>
+                        </div>
                     </div>
-                    <div class="icon-box w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span class="material-symbols-rounded">calculate</span>
-                    </div>
-                </div>
-                <div class="mt-4 flex gap-2">
-                     <span class="text-xs font-mono bg-slate-100 text-slate-500 px-2 py-1 rounded">含模拟器</span>
-                     <span class="text-xs font-mono bg-slate-100 text-slate-500 px-2 py-1 rounded">手写版</span>
-                </div>
-            </a>
 
-            <!-- OS 简答题 1 -->
-            <a href="OS选择、判断、简答（1）.html" class="glass-card group block rounded-xl p-5 hover:border-l-4 hover:border-l-sky-400">
-                <div class="flex items-center gap-4">
-                    <div class="icon-box w-10 h-10 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span class="material-symbols-rounded">quiz</span>
+                    <div class="timeline-item pb-2" id="item-py">
+                        <p class="text-xs font-bold text-slate-500 mb-0.5">11月25日 (周一) 14:00</p>
+                        <h4 class="font-bold text-slate-800">Python程序设计</h4>
+                        <div class="flex items-center gap-1 mt-1.5">
+                            <span class="bg-orange-100 text-orange-700 text-xs font-mono px-1.5 py-0.5 rounded border border-orange-200">B102</span>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-slate-800 group-hover:text-sky-600">基础题库 (卷一)</h3>
-                        <p class="text-xs text-slate-500 mt-0.5">选择、判断、简答</p>
+
+                    <div class="timeline-item pb-2 border-l-0 md:border-l-2" id="item-math">
+                        <p class="text-xs font-bold text-slate-500 mb-0.5">11月27日 (周三) 14:00</p>
+                        <h4 class="font-bold text-slate-800">离散数学</h4>
+                        <div class="flex items-center gap-1 mt-1.5">
+                            <span class="bg-blue-100 text-blue-700 text-xs font-mono px-1.5 py-0.5 rounded border border-blue-200">C202</span>
+                            <span class="text-xs text-slate-500">收官之战</span>
+                        </div>
                     </div>
                 </div>
-            </a>
-
-            <!-- OS 简答题 2 -->
-            <a href="OS选择、判断、简答（2）.html" class="glass-card group block rounded-xl p-5 hover:border-l-4 hover:border-l-sky-400">
-                <div class="flex items-center gap-4">
-                    <div class="icon-box w-10 h-10 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span class="material-symbols-rounded">quiz</span>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-slate-800 group-hover:text-sky-600">基础题库 (卷二)</h3>
-                        <p class="text-xs text-slate-500 mt-0.5">概念辨析与补充练习</p>
-                    </div>
-                </div>
-            </a>
-        </section>
-
-        <!-- 2. 离散数学板块 -->
-        <section class="space-y-4">
-            <div class="flex items-center gap-2 mb-2 px-1">
-                <span class="material-symbols-rounded text-purple-600">functions</span>
-                <h2 class="text-xl font-bold text-slate-700">离散数学</h2>
             </div>
+        </div>
 
-            <!-- 离散全卷 -->
-            <a href="离散数学.html" class="glass-card group block rounded-2xl p-6 border-l-4 border-l-purple-500 h-full flex flex-col">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="icon-box w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center">
-                        <span class="material-symbols-rounded text-3xl">history_edu</span>
-                    </div>
-                    <span class="bg-purple-100 text-purple-700 text-xs font-bold px-2 py-1 rounded-full">Full Paper</span>
-                </div>
-                
-                <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors mb-2">期末复习全卷</h3>
-                <p class="text-sm text-slate-500 leading-relaxed flex-1">
-                    集合论、图论、数理逻辑综合试卷。包含手写风格解析与自动批改样式。
-                </p>
-                
-                <div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-2 gap-2">
-                    <div class="text-xs text-slate-400 flex items-center">
-                        <span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2"></span>真值表
-                    </div>
-                    <div class="text-xs text-slate-400 flex items-center">
-                        <span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2"></span>谓词逻辑
-                    </div>
-                    <div class="text-xs text-slate-400 flex items-center">
-                        <span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2"></span>图论证明
-                    </div>
-                    <div class="text-xs text-slate-400 flex items-center">
-                        <span class="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2"></span>集合运算
+        <div class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-rounded text-slate-400">folder_open</span>
+            <h3 class="font-bold text-slate-600 text-sm uppercase tracking-wider">复习资料库</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="cardGrid">
+
+            <a href="dishihao/final-exam-2025/final-exam-2025-3e992feb702e0ac6b501da48605a5aa6bbd2c6df/OS大题.html" class="card-item group" data-exam="2025-11-24">
+                <div class="bento-card h-full border-t-4 border-t-red-500 hover:shadow-red-500/10">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="bg-red-50 text-red-600 p-2 rounded-lg">
+                                <span class="material-symbols-rounded block">calculate</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs font-bold text-red-500">11-24 14:00</div>
+                                <div class="text-[10px] font-mono text-slate-400">LOC: C101</div>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2 group-hover:text-red-600 transition-colors">OS 计算题专项</h3>
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="tag bg-slate-100 text-slate-600">银行家算法</span>
+                            <span class="tag bg-slate-100 text-slate-600">PV操作</span>
+                            <span class="tag bg-slate-100 text-slate-600">磁盘调度</span>
+                        </div>
+                        <div class="text-xs font-bold text-slate-400 flex items-center gap-1 group-hover:text-red-500 transition-colors">
+                            进入突击 <span class="material-symbols-rounded text-sm">arrow_forward</span>
+                        </div>
                     </div>
                 </div>
             </a>
-        </section>
 
-        <!-- 3. Python 板块 -->
-        <section class="space-y-4">
-            <div class="flex items-center gap-2 mb-2 px-1">
-                <span class="material-symbols-rounded text-green-600">code</span>
-                <h2 class="text-xl font-bold text-slate-700">Python 程序设计</h2>
-            </div>
-
-            <!-- Python 复习 -->
-            <a href="Python复习.html" class="glass-card group block rounded-2xl p-6 border-l-4 border-l-green-500">
-                <div class="flex items-start justify-between">
-                    <div class="flex-1">
-                        <h3 class="text-lg font-bold text-slate-800 group-hover:text-green-600 transition-colors">期末模拟试题</h3>
-                        <p class="text-sm text-slate-500 mt-1">
-                            基础语法、函数、组合数据类型、文件操作。
-                        </p>
-                    </div>
-                    <div class="icon-box w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center ml-4">
-                        <span class="material-symbols-rounded text-2xl">terminal</span>
-                    </div>
-                </div>
-                
-                <div class="mt-4 bg-green-50/50 rounded-lg p-3 border border-green-100">
-                    <div class="flex items-center gap-2 text-xs font-mono text-green-800 mb-1">
-                        <span class="material-symbols-rounded text-[14px]">check_circle</span>
-                        <span>已包含解析</span>
-                    </div>
-                    <div class="w-full bg-green-200 h-1.5 rounded-full mt-1 overflow-hidden">
-                        <div class="bg-green-500 h-full w-3/4"></div>
+            <a href="dishihao/final-exam-2025/final-exam-2025-3e992feb702e0ac6b501da48605a5aa6bbd2c6df/OS选择、判断、简答（1）.html" class="card-item group" data-exam="2025-11-24">
+                <div class="bento-card h-full border-t-4 border-t-red-500 hover:shadow-red-500/10">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="bg-red-50 text-red-600 p-2 rounded-lg">
+                                <span class="material-symbols-rounded block">quiz</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs font-bold text-red-500">11-24 14:00</div>
+                                <div class="text-[10px] font-mono text-slate-400">LOC: C101</div>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2 group-hover:text-red-600 transition-colors">OS 基础试卷 (一)</h3>
+                        <p class="text-xs text-slate-500 mb-4 line-clamp-2">覆盖进程管理、中断处理及死锁概念。含20道单选与简答题。</p>
+                        <div class="text-xs font-bold text-slate-400 flex items-center gap-1 group-hover:text-red-500 transition-colors">
+                            开始刷题 <span class="material-symbols-rounded text-sm">arrow_forward</span>
+                        </div>
                     </div>
                 </div>
             </a>
             
-            <!-- 占位/备忘录 (可选) -->
-            <div class="glass-card rounded-xl p-5 border-dashed border-2 border-slate-300 bg-transparent opacity-60 flex flex-col items-center justify-center text-center py-8">
-                <span class="material-symbols-rounded text-slate-400 text-3xl mb-2">add_circle</span>
-                <p class="text-sm text-slate-500">待上传更多资料...</p>
-            </div>
-        </section>
+            <a href="dishihao/final-exam-2025/final-exam-2025-3e992feb702e0ac6b501da48605a5aa6bbd2c6df/OS选择、判断、简答（2）.html" class="card-item group" data-exam="2025-11-24">
+                <div class="bento-card h-full border-t-4 border-t-red-500 hover:shadow-red-500/10">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="bg-red-50 text-red-600 p-2 rounded-lg">
+                                <span class="material-symbols-rounded block">description</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs font-bold text-red-500">11-24 14:00</div>
+                                <div class="text-[10px] font-mono text-slate-400">LOC: C101</div>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2 group-hover:text-red-600 transition-colors">OS 基础试卷 (二)</h3>
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="tag bg-slate-100 text-slate-600">虚拟内存</span>
+                            <span class="tag bg-slate-100 text-slate-600">周转时间</span>
+                        </div>
+                        <div class="text-xs font-bold text-slate-400 flex items-center gap-1 group-hover:text-red-500 transition-colors">
+                            查漏补缺 <span class="material-symbols-rounded text-sm">arrow_forward</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
 
+            <a href="dishihao/final-exam-2025/final-exam-2025-3e992feb702e0ac6b501da48605a5aa6bbd2c6df/Python复习.html" class="card-item group" data-exam="2025-11-25">
+                <div class="bento-card h-full border-t-4 border-t-orange-400 hover:shadow-orange-500/10">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="bg-orange-50 text-orange-600 p-2 rounded-lg">
+                                <span class="material-symbols-rounded block">terminal</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs font-bold text-orange-500">11-25 14:00</div>
+                                <div class="text-[10px] font-mono text-slate-400">LOC: B102</div>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2 group-hover:text-orange-600 transition-colors">Python 模拟卷</h3>
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="tag bg-slate-100 text-slate-600">切片操作</span>
+                            <span class="tag bg-slate-100 text-slate-600">字典与集合</span>
+                            <span class="tag bg-slate-100 text-slate-600">文件IO</span>
+                        </div>
+                        <div class="text-xs font-bold text-slate-400 flex items-center gap-1 group-hover:text-orange-500 transition-colors">
+                            代码实战 <span class="material-symbols-rounded text-sm">arrow_forward</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="dishihao/final-exam-2025/final-exam-2025-3e992feb702e0ac6b501da48605a5aa6bbd2c6df/离散数学.html" class="card-item group" data-exam="2025-11-27">
+                <div class="bento-card h-full border-t-4 border-t-blue-500 hover:shadow-blue-500/10">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="bg-blue-50 text-blue-600 p-2 rounded-lg">
+                                <span class="material-symbols-rounded block">functions</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs font-bold text-blue-500">11-27 14:00</div>
+                                <div class="text-[10px] font-mono text-slate-400">LOC: C202</div>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">离散数学全卷</h3>
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="tag bg-slate-100 text-slate-600">图论证明</span>
+                            <span class="tag bg-slate-100 text-slate-600">谓词逻辑</span>
+                            <span class="tag bg-slate-100 text-slate-600">关系闭包</span>
+                        </div>
+                        <div class="text-xs font-bold text-slate-400 flex items-center gap-1 group-hover:text-blue-500 transition-colors">
+                            满分复习 <span class="material-symbols-rounded text-sm">arrow_forward</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
     </main>
 
-    <footer class="mt-16 text-center text-slate-400 text-xs pb-8">
-        <p>&copy; 2025 Final Exam Preparation. Good Luck!</p>
+    <footer class="text-center text-slate-400 text-xs py-8">
+        <p>© 2025 Final Exam Dashboard | Stay Focused.</p>
     </footer>
 
+    <script>
+        // 考试数据配置
+        const exams = [
+            { name: "操作系统原理", date: "2025-11-24T14:00:00", loc: "C101", id: "os" },
+            { name: "Python程序设计", date: "2025-11-25T14:00:00", loc: "B102", id: "py" },
+            { name: "离散数学", date: "2025-11-27T14:00:00", loc: "C202", id: "math" }
+        ];
+
+        function updateCountdown() {
+            const now = new Date();
+            
+            // 找到下一场还没开始的考试
+            let nextExam = exams.find(e => new Date(e.date) > now);
+            
+            // 如果都考完了（或者当前没找到），默认显示第一场或者“考试结束”
+            if (!nextExam) {
+                // 检查是否所有考试都已过期
+                if (new Date(exams[exams.length-1].date) < now) {
+                    document.getElementById('nextExamName').innerText = "所有考试结束";
+                    document.getElementById('nextExamLoc').innerText = "Happy Holiday!";
+                    document.getElementById('countdownDays').innerText = "0";
+                    document.getElementById('countdownTime').innerText = "00:00:00";
+                    return;
+                }
+                nextExam = exams[0]; // 默认 fallback
+            }
+
+            // 更新左侧大卡片信息
+            document.getElementById('nextExamName').innerText = nextExam.name;
+            document.getElementById('nextExamLoc').innerText = "考场: " + nextExam.loc;
+
+            // 更新时间轴高亮
+            document.querySelectorAll('.timeline-item').forEach(el => {
+                el.classList.remove('active');
+                el.querySelector('p').classList.remove('text-indigo-600');
+                el.querySelector('p').classList.add('text-slate-500');
+            });
+            const activeItem = document.getElementById('item-' + nextExam.id);
+            if(activeItem) {
+                activeItem.classList.add('active');
+                activeItem.querySelector('p').classList.remove('text-slate-500');
+                activeItem.querySelector('p').classList.add('text-indigo-600');
+            }
+
+            // 计算倒计时
+            const targetDate = new Date(nextExam.date);
+            const diff = targetDate - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('countdownDays').innerText = days;
+                document.getElementById('countdownTime').innerText = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }
+
+        // 搜索功能
+        const searchInput = document.getElementById('searchInput');
+        const cardItems = document.querySelectorAll('.card-item');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            cardItems.forEach(card => {
+                const content = card.innerText.toLowerCase();
+                card.style.display = content.includes(term) ? 'block' : 'none';
+            });
+        });
+
+        // 启动
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 </body>
 </html>
