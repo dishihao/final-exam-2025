@@ -3,85 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025 期末复习站 - 核心考点</title>
+    <title>2025 期末复习总站</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: system-ui, -apple-system, sans-serif; background-color: #e2e8f0; }
-        .card-shadow { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); }
-        .os-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(30, 41, 59, 0.2); }
+        body { font-family: system-ui, -apple-system, sans-serif; background-color: #f8fafc; }
+        .hover-up { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .hover-up:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
     </style>
 </head>
-<body class="pb-10">
+<body class="min-h-screen flex flex-col">
 
-    <div class="bg-slate-900 text-white pt-10 pb-20 shadow-xl">
-        <div class="max-w-4xl mx-auto px-4">
-            <h1 class="text-4xl font-extrabold tracking-tight">OS 核心考点复习站</h1>
-            <p class="text-slate-400 text-lg mt-2">点击卡片，进行动态模拟与作答验证</p>
-        </div>
+    <div class="bg-slate-900 text-white py-12 px-4 text-center shadow-xl">
+        <h1 class="text-4xl font-extrabold mb-2 tracking-tight">📚 2025 期末复习总站</h1>
+        <p class="text-slate-400">计算机科学与技术 | 核心考点 & 模拟试题</p>
     </div>
 
-    <main class="max-w-4xl mx-auto px-4 -mt-12 space-y-8">
-
-        <div class="bg-white p-6 rounded-xl card-shadow border border-slate-200">
-            <h2 class="text-xl font-bold text-slate-800 border-b-2 border-slate-300 pb-3 mb-5 flex items-center gap-2">
-                <span class="text-blue-600">🧠</span> 核心计算与调度 (6道必考大题)
-            </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                
-                <a href="OS1多道批处理.html" class="os-card block p-4 bg-white rounded-lg shadow-md border-t-4 border-blue-600 transition duration-200">
-                    <div class="font-bold text-slate-800">OS01</div>
-                    <div class="text-sm text-slate-600 mt-1">多道批处理调度</div>
-                </a>
-
-                <a href="OS3银行家算法.html" class="os-card block p-4 bg-white rounded-lg shadow-md border-t-4 border-blue-600 transition duration-200">
-                    <div class="font-bold text-slate-800">OS03</div>
-                    <div class="text-sm text-slate-600 mt-1">银行家算法 (防死锁)</div>
-                </a>
-                
-                <a href="OS4分页存储地址转换.html" class="os-card block p-4 bg-white rounded-lg shadow-md border-t-4 border-blue-600 transition duration-200">
-                    <div class="font-bold text-slate-800">OS04</div>
-                    <div class="text-sm text-slate-600 mt-1">分页地址转换</div>
-                </a>
-
-                <a href="OS5LRU算法.html" class="os-card block p-4 bg-white rounded-lg shadow-md border-t-4 border-blue-600 transition duration-200">
-                    <div class="font-bold text-slate-800">OS05</div>
-                    <div class="text-sm text-slate-600 mt-1">页面置换 (LRU)</div>
-                </a>
-
-                <a href="OS8-SSTF.html" class="os-card block p-4 bg-white rounded-lg shadow-md border-t-4 border-red-600 transition duration-200">
-                    <div class="font-bold text-slate-800">OS08</div>
-                    <div class="text-sm text-slate-600 mt-1">磁盘调度 (SSTF)</div>
-                </a>
-
-                <a href="OS9PV操作.html" class="os-card block p-4 bg-white rounded-lg shadow-md border-t-4 border-blue-600 transition duration-200">
-                    <div class="font-bold text-slate-800">OS09</div>
-                    <div class="text-sm text-slate-600 mt-1">进程同步 (PV操作)</div>
-                </a>
-
-            </div>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl card-shadow border border-slate-200">
-            <h2 class="text-xl font-bold text-slate-800 border-b-2 border-slate-300 pb-3 mb-5 flex items-center gap-2">
-                <span class="text-amber-500">💡</span> 综合复习资料 (选择/简答)
-            </h2>
-            
-            <div class="space-y-3">
-                <a href="选择、判断、简答（1）.html" class="block p-4 bg-amber-50 hover:bg-amber-100 rounded-lg text-amber-900 transition font-bold">
-                    [SET 1] 选择、判断、简答（1）
-                </a>
-                <a href="选择、判断、简答（2）.html" class="block p-4 bg-amber-50 hover:bg-amber-100 rounded-lg text-amber-900 transition font-bold">
-                    [SET 2] 选择、判断、简答（2）
-                </a>
-            </div>
-        </div>
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 py-10">
         
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                <div class="bg-blue-600 p-4 text-white flex items-center gap-3">
+                    <span class="text-2xl">💻</span>
+                    <h2 class="text-xl font-bold">操作系统 (OS)</h2>
+                </div>
+                <div class="p-6 flex-1 space-y-3">
+                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-2">核心算法演示</p>
+                    
+                    <a href="OS1多道批处理.html" class="block p-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg font-bold text-sm hover-up border border-blue-100">
+                        OS01 多道批处理调度
+                    </a>
+                    <a href="OS3银行家算法.html" class="block p-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg font-bold text-sm hover-up border border-blue-100">
+                        OS03 银行家算法
+                    </a>
+                    <a href="OS4分页存储地址转换.html" class="block p-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg font-bold text-sm hover-up border border-blue-100">
+                        OS04 分页存储地址转换
+                    </a>
+                    <a href="OS5LRU算法.html" class="block p-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg font-bold text-sm hover-up border border-blue-100">
+                        OS05 LRU 页面置换
+                    </a>
+                    <a href="OS8-SSTF.html" class="block p-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg font-bold text-sm hover-up border border-blue-100">
+                        OS08 磁盘调度 (SSTF)
+                    </a>
+                    <a href="OS9PV操作.html" class="block p-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-lg font-bold text-sm hover-up border border-blue-100">
+                        OS09 PV 操作同步
+                    </a>
+
+                    <div class="my-4 border-t border-slate-100"></div>
+                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-2">综合题库</p>
+                    <a href="选择、判断、简答（1）.html" class="block p-2 text-slate-600 hover:text-blue-600 text-sm truncate">📄 选择判断简答 (1)</a>
+                    <a href="选择、判断、简答（2）.html" class="block p-2 text-slate-600 hover:text-blue-600 text-sm truncate">📄 选择判断简答 (2)</a>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                <div class="bg-purple-600 p-4 text-white flex items-center gap-3">
+                    <span class="text-2xl">∑</span>
+                    <h2 class="text-xl font-bold">离散数学</h2>
+                </div>
+                <div class="p-6 flex-1 flex flex-col items-center justify-center text-center space-y-4 min-h-[300px]">
+                    <div class="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center text-3xl">
+                        📊
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-700">知识点梳理中...</h3>
+                        <p class="text-sm text-slate-500 mt-2">逻辑推理、集合论、图论</p>
+                    </div>
+                    <button class="px-4 py-2 rounded-full bg-slate-100 text-slate-400 text-sm cursor-not-allowed">
+                        暂无上传资料
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                <div class="bg-green-600 p-4 text-white flex items-center gap-3">
+                    <span class="text-2xl">🐍</span>
+                    <h2 class="text-xl font-bold">Python 程序设计</h2>
+                </div>
+                <div class="p-6 flex-1 space-y-4">
+                    <div class="bg-green-50 rounded-xl p-4 border border-green-100">
+                        <h3 class="font-bold text-green-800 mb-1">模拟考试卷</h3>
+                        <p class="text-xs text-green-600 opacity-80">涵盖基础语法、函数、组合数据类型等全套考点。</p>
+                    </div>
+
+                    <a href="Python复习.html" class="group block p-4 bg-white border-2 border-green-500 hover:bg-green-600 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 group-hover:bg-white group-hover:text-green-600 flex items-center justify-center font-bold text-lg">
+                                    A
+                                </div>
+                                <div>
+                                    <div class="font-bold text-slate-800 group-hover:text-white">进入模拟考试</div>
+                                    <div class="text-xs text-slate-500 group-hover:text-green-100">点击开始答题</div>
+                                </div>
+                            </div>
+                            <span class="text-slate-300 group-hover:text-white text-xl">→</span>
+                        </div>
+                    </a>
+
+                    <div class="space-y-2 mt-4">
+                        <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">重点章节</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded">列表与元组</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded">字典集合</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded">函数递归</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded">文件操作</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </main>
-    
-    <div class="text-center mt-8 text-slate-400 text-xs">
-        部署于 GitHub Pages | 自动构建 | 祝大家逢考必过！
-    </div>
+
+    <footer class="text-center py-8 text-slate-400 text-xs">
+        <p>GitHub Pages 自动部署 | 祝大家取得好成绩 💯</p>
+    </footer>
 
 </body>
 </html>
