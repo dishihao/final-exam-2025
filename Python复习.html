@@ -4,117 +4,192 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Python 程序设计期末复习卷（完整版）</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-    <!-- 引入手写字体(Ma Shan Zheng)用于红笔效果，Noto Serif SC用于正文 -->
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
     <style>
         body {
-            background-color: #f3f4f6;
-            font-family: 'Noto Serif SC', serif;
+            background-color: #e5e7eb;
+            font-family: 'Noto Serif SC', 'SimSun', serif;
             color: #1f2937;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
         .paper {
             background-color: white;
-            width: 210mm;
+            width: 100%;
+            max-width: 210mm;
             min-height: 297mm;
             margin: 20px auto;
             padding: 20mm;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             position: relative;
+            box-sizing: border-box;
         }
-        /* 红笔手写风格 */
+        
+        /* 红色楷体手写效果 - 对应离散数学风格 */
         .red-pen {
-            font-family: 'Ma Shan Zheng', cursive;
-            color: #dc2626; /* Red-600 */
-            font-size: 1.2em;
-            transform: rotate(-0.5deg);
+            font-family: "KaiTi", "STKaiti", "楷体", serif;
+            color: #cc0000; /* 深红色 */
+            font-size: 1.15em;
             display: inline-block;
-            margin-left: 0.5rem;
+            margin-left: 0.3rem;
+            font-weight: 500;
         }
-        /* 题型标签 */
+        .red-pen-block {
+            font-family: "KaiTi", "STKaiti", "楷体", serif;
+            color: #b91c1c;
+            font-size: 1.05em;
+            margin-top: 0.5rem;
+            padding: 1rem;
+            border-left: 4px solid #fecaca;
+            background-color: #fff5f5;
+            border-radius: 4px;
+            line-height: 1.8;
+        }
+        
+        /* 解析区域样式 */
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            background-color: #fff1f2;
+            border-left: 3px solid #f43f5e;
+            color: #9f1239;
+            font-size: 0.95em;
+            font-family: "KaiTi", "STKaiti", "楷体", serif;
+            display: block;
+        }
+
+        /* 题型标签 (保留原意但样式微调以适应新风格) */
         .q-tag {
             font-size: 0.75rem;
-            background-color: #e5e7eb;
-            color: #374151;
-            padding: 1px 6px;
+            background-color: #f3f4f6;
+            color: #4b5563;
+            padding: 2px 6px;
             border-radius: 4px;
             margin-right: 8px;
             font-family: sans-serif;
             vertical-align: middle;
+            border: 1px solid #d1d5db;
         }
-        /* 解析区域 */
-        .explanation {
-            margin-top: 4px;
-            padding: 4px 8px;
-            background-color: #fff1f2; /* Rose-50 */
-            border-left: 3px solid #f43f5e;
-            color: #881337;
-            font-size: 0.85em;
-            display: block; /* 默认显示，通过JS控制隐藏 */
-        }
+
+        /* 代码块样式 (适配新风格) */
         .code-block {
             font-family: 'Consolas', 'Monaco', monospace;
             background-color: #f8fafc;
             border: 1px solid #e2e8f0;
-            padding: 8px;
+            padding: 10px;
             border-radius: 4px;
-            margin-top: 4px;
+            margin-top: 6px;
             font-size: 0.9em;
             white-space: pre-wrap;
+            color: #334155;
         }
+
+        /* 选项布局：网格 */
+        .grid-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+
+        /* 标题样式 */
+        h1 { margin: 0; }
+        h2 { 
+            font-size: 1.25rem; 
+            font-weight: bold; 
+            margin-bottom: 1rem; 
+            margin-top: 2rem;
+            border-left: 4px solid #1f2937; 
+            padding-left: 0.75rem; 
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-family: sans-serif;
+            font-size: 0.875rem;
+            cursor: pointer;
+            border: none;
+            color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: background-color 0.2s;
+        }
+        .btn-blue { background-color: #2563eb; }
+        .btn-blue:hover { background-color: #1d4ed8; }
+        .btn-gray { background-color: #4b5563; }
+        .btn-gray:hover { background-color: #374151; }
+        .fixed-controls {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 50;
+        }
+
+        /* 书本题目特殊框 */
         .book-problem {
-            border: 2px dashed #3b82f6;
+            border: 1px dashed #3b82f6;
             background-color: #eff6ff;
             padding: 12px;
             border-radius: 8px;
             margin-top: 12px;
             margin-bottom: 12px;
         }
+
         @media print {
             body { background: none; }
-            .paper { margin: 0; box-shadow: none; width: 100%; padding: 10mm; }
+            .paper { margin: 0; box-shadow: none; width: 100%; padding: 15mm; }
             .no-print { display: none; }
-            .explanation { display: block !important; } /* 打印时显示解析 */
+            .explanation { display: block !important; }
+            .fixed-controls { display: none; }
+        }
+        @media (max-width: 768px) {
+            .paper { padding: 15px; margin: 0; width: 100%; }
+            .grid-options { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-<!-- 悬浮控制按钮 -->
-<div class="fixed top-4 left-4 flex flex-col gap-3 z-50 no-print">
-    <button class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition font-sans" onclick="exportHTML()">
+<div class="fixed-controls no-print">
+    <button class="btn btn-blue" onclick="exportHTML()">
         <span class="material-symbols-outlined">save</span>
         保存试卷
     </button>
-    <button class="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition font-sans" onclick="toggleAnswers()">
+    <button class="btn btn-gray" onclick="toggleAnswers()">
         <span class="material-symbols-outlined">visibility_off</span>
         <span id="toggle-text">显示/隐藏答案与解析</span>
     </button>
 </div>
 
 <div class="paper">
-    <!-- 试卷抬头 -->
-    <div class="text-center border-b-2 border-gray-800 pb-6 mb-8 relative">
-        <h1 class="text-3xl font-bold mb-2">Python 程序设计 期末复习卷</h1>
-        <div class="flex justify-center gap-8 text-sm text-gray-600 mt-4 font-sans">
+    <div class="text-center border-b-2 border-gray-800 pb-6 mb-8 relative" style="text-align: center; border-bottom: 2px solid #1f2937; padding-bottom: 1.5rem; margin-bottom: 2rem;">
+        <h1 style="font-size: 1.875rem; font-weight: bold; margin-bottom: 0.5rem;">Python 程序设计 期末复习卷</h1>
+        <div style="display: flex; justify-content: center; gap: 2rem; font-size: 0.875rem; color: #4b5563; margin-top: 1rem; font-family: sans-serif;">
             <span>适用范围：第一章 至 第七章</span>
             <span>题源：复习文档 + 教材重点题</span>
         </div>
-        
-        
     </div>
 
-    <!-- 第一章 -->
-    <div class="mb-6">
-        <h2 class="text-xl font-bold mb-4 border-l-4 border-gray-800 pl-3">第一章：Python 概述</h2>
-        <div class="space-y-4">
+    <div class="mb-8">
+        <h2>第一章：Python 概述</h2>
+        <div class="space-y-6">
             <div>
-                <span class="q-tag">简答题</span>
-                <strong>1. Python语言的优点有哪些？</strong>
-                <div class="red-pen explanation-block">
+                <p><span class="q-tag">简答题</span> <strong>1. Python语言的优点有哪些？</strong></p>
+                <div class="red-pen-block">
                     答：<br>
                     1. 简单易学，语法清晰。<br>
                     2. 免费开源，拥有丰富的标准库和第三方库。<br>
@@ -128,192 +203,164 @@
         </div>
     </div>
 
-    <!-- 第二章 -->
-    <div class="mb-6">
-        <h2 class="text-xl font-bold mb-4 border-l-4 border-gray-800 pl-3">第二章：数据类型与表达式</h2>
-        <div class="space-y-3">
+    <div class="mb-8">
+        <h2>第二章：数据类型与表达式</h2>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
             <div>
-                <span class="q-tag">选择题</span>
-                1. 下列标识符中，不符合 Python 命名规则的是 (<span class="red-pen"> B, E </span>)
-                <div class="ml-6 text-sm text-gray-600">
-                    A. _age &nbsp;&nbsp; B. 123char &nbsp;&nbsp; C. Char123 &nbsp;&nbsp; D. MyName &nbsp;&nbsp; E. pass
+                <p><span class="q-tag">选择题</span> 1. 下列标识符中，不符合 Python 命名规则的是 (<span class="red-pen"> B, E </span>)</p>
+                <div class="grid-options">
+                    <span>A. _age</span><span>B. 123char</span><span>C. Char123</span><span>D. MyName</span><span>E. pass</span>
                 </div>
-                <div class="explanation explanation-block">解析：B以数字开头；E是保留关键字。</div>
+                <div class="explanation">解析：B以数字开头；E是保留关键字。</div>
             </div>
 
             <div>
-                <span class="q-tag">代码题</span>
-                2. 下面代码的执行结果是 <span class="red-pen"> 54 </span>
-                <div class="code-block text-xs">>>>x=3
+                <p><span class="q-tag">代码题</span> 2. 下面代码的执行结果是 <span class="red-pen"> 54 </span></p>
+                <div class="code-block">>>>x=3
 >>>x*=2+4**2
 >>>print(x)</div>
-                <div class="explanation explanation-block">解析：优先级 ** > + > *=。先算 4**2=16，再算 2+16=18，最后 x = 3 * 18 = 54。</div>
+                <div class="explanation">解析：优先级 ** > + > *=。先算 4**2=16，再算 2+16=18，最后 x = 3 * 18 = 54。</div>
             </div>
 
             <div>
-                <span class="q-tag">选择题</span>
-                3. 在python当中，下列表达式非法的是 (<span class="red-pen"> C </span>)
-                <div class="ml-6 text-sm text-gray-600">
-                    A. x=y=z=1 &nbsp;&nbsp; B. x,y=y,z &nbsp;&nbsp; C. x=(y=z+1) &nbsp;&nbsp; D. x+=y
+                <p><span class="q-tag">选择题</span> 3. 在python当中，下列表达式非法的是 (<span class="red-pen"> C </span>)</p>
+                <div class="grid-options">
+                    <span>A. x=y=z=1</span><span>B. x,y=y,z</span><span>C. x=(y=z+1)</span><span>D. x+=y</span>
                 </div>
-                <div class="explanation explanation-block">解析：Python赋值语句不能作为表达式返回值。</div>
+                <div class="explanation">解析：Python赋值语句不能作为表达式返回值。</div>
             </div>
 
             <div>
-                <span class="q-tag">填空题</span>
-                4. 假设 s = “Life is beautiful”，则 s[3:8] 的值为：<span class="red-pen underline"> "e is " </span>
-                <div class="explanation explanation-block">解析：切片含头不含尾，下标3是'e'，下标8是'b'（不含），注意空格。</div>
+                <p><span class="q-tag">填空题</span> 4. 假设 s = “Life is beautiful”，则 s[3:8] 的值为：<span class="red-pen underline"> "e is " </span></p>
+                <div class="explanation">解析：切片含头不含尾，下标3是'e'，下标8是'b'（不含），注意空格。</div>
             </div>
 
             <div>
-                <span class="q-tag">选择题</span>
-                5. type(2+3*4.34)的结果是 (<span class="red-pen"> float </span>)
-                <div class="explanation explanation-block">解析：包含浮点数的运算结果自动提升为浮点型。</div>
+                <p><span class="q-tag">选择题</span> 5. type(2+3*4.34)的结果是 (<span class="red-pen"> float </span>)</p>
+                <div class="explanation">解析：包含浮点数的运算结果自动提升为浮点型。</div>
             </div>
 
             <div>
-                <span class="q-tag">选择题</span>
-                6. 不符合下面程序横线中语法要求的表达式是 (<span class="red-pen"> 无/D </span>)
-                <div class="ml-6 text-sm text-gray-600">
-                    for i in ________:<br>print(i)<br>
-                    A .range(0,20) &nbsp;&nbsp; B.“python” &nbsp;&nbsp; C. (3,4,5) &nbsp;&nbsp; D.{3,4,5}
+                <p><span class="q-tag">选择题</span> 6. 不符合下面程序横线中语法要求的表达式是 (<span class="red-pen"> 无/D </span>)</p>
+                <div style="margin-left: 1.5rem; font-size: 0.95rem; color: #4b5563;">
+                    for i in ________:<br>print(i)
                 </div>
-                <div class="explanation explanation-block">解析：严格来说ABCD都是可迭代对象，语法都正确。通常考题意图可能是考察无序性，D是集合无序，但语法不报错。</div>
+                <div class="grid-options">
+                   <span>A .range(0,20)</span><span>B.“python”</span><span>C. (3,4,5)</span><span>D.{3,4,5}</span>
+                </div>
+                <div class="explanation">解析：严格来说ABCD都是可迭代对象，语法都正确。通常考题意图可能是考察无序性，D是集合无序，但语法不报错。</div>
             </div>
 
             <div>
-                <span class="q-tag">填空题</span>
-                7. 哪个模块提供了数学计算功能? <span class="red-pen underline"> math </span>
+                <p><span class="q-tag">填空题</span> 7. 哪个模块提供了数学计算功能? <span class="red-pen underline"> math </span></p>
             </div>
 
             <div>
-                <span class="q-tag">简答题</span>
-                8. Python支持的数据类型有float、list、int等，char支不支持? <span class="red-pen underline"> 不支持 (用长度为1的str表示) </span>
+                <p><span class="q-tag">简答题</span> 8. Python支持的数据类型有float、list、int等，char支不支持? <span class="red-pen underline"> 不支持 (用长度为1的str表示) </span></p>
             </div>
 
             <div>
-                <span class="q-tag">计算题</span>
-                9. 执行 print("2" * 2 + str(6)) 的结果是 (<span class="red-pen"> "226" </span>)
-                <div class="explanation explanation-block">解析："2"*2="22", str(6)="6", 拼接得"226"。</div>
+                <p><span class="q-tag">计算题</span> 9. 执行 print("2" * 2 + str(6)) 的结果是 (<span class="red-pen"> "226" </span>)</p>
+                <div class="explanation">解析："2"*2="22", str(6)="6", 拼接得"226"。</div>
             </div>
 
             <div>
-                <span class="q-tag">计算题</span>
-                10. 若 x = 21.3, y = "10"，则 float(y) + x 的结果是 (<span class="red-pen"> 31.3 </span>)
+                <p><span class="q-tag">计算题</span> 10. 若 x = 21.3, y = "10"，则 float(y) + x 的结果是 (<span class="red-pen"> 31.3 </span>)</p>
             </div>
 
             <div>
-                <span class="q-tag">填空题</span>
-                11. 字符串切片示例：str1="sdfugwrf"，则 print(str1[::-2]) 的结果是？ <span class="red-pen underline"> "fwud" </span>
-                <div class="explanation explanation-block">解析：倒序每隔一个取值。f(末) -> w -> u -> d。</div>
+                <p><span class="q-tag">填空题</span> 11. 字符串切片示例：str1="sdfugwrf"，则 print(str1[::-2]) 的结果是？ <span class="red-pen underline"> "fwud" </span></p>
+                <div class="explanation">解析：倒序每隔一个取值。f(末) -> w -> u -> d。</div>
             </div>
 
             <div>
-                <span class="q-tag">填空题</span>
-                12. Python中，字符串“中华大地”的长度是？ <span class="red-pen underline"> 4 </span>
+                <p><span class="q-tag">填空题</span> 12. Python中，字符串“中华大地”的长度是？ <span class="red-pen underline"> 4 </span></p>
             </div>
 
             <div>
-                <span class="q-tag">填空题</span>
-                13. Python 3.x 语句 print(3, 4, 5, sep=';') 的输出结果为 <span class="red-pen underline"> 3;4;5 </span>
+                <p><span class="q-tag">填空题</span> 13. Python 3.x 语句 print(3, 4, 5, sep=';') 的输出结果为 <span class="red-pen underline"> 3;4;5 </span></p>
             </div>
 
             <div>
-                <span class="q-tag">判断题</span>
-                14. 表达式 4<6>3 的值为 <span class="red-pen underline"> True </span>
-                <div class="explanation explanation-block">解析：等价于 4<6 and 6>3。</div>
+                <p><span class="q-tag">判断题</span> 14. 表达式 4&lt;6&gt;3 的值为 <span class="red-pen underline"> True </span></p>
+                <div class="explanation">解析：等价于 4&lt;6 and 6&gt;3。</div>
             </div>
 
             <div>
-                <span class="q-tag">填空题</span>
-                15. 表达式 'banana,apple,peach'.index('na') 的值为 <span class="red-pen underline"> 2 </span>
+                <p><span class="q-tag">填空题</span> 15. 表达式 'banana,apple,peach'.index('na') 的值为 <span class="red-pen underline"> 2 </span></p>
             </div>
 
             <div>
-                <span class="q-tag">填空题</span>
-                16. input("请输入：")时，用户输入的内容默认是什么类型？ <span class="red-pen underline"> str (字符串) </span>
+                <p><span class="q-tag">填空题</span> 16. input("请输入：")时，用户输入的内容默认是什么类型？ <span class="red-pen underline"> str (字符串) </span></p>
             </div>
 
             <div>
-                <span class="q-tag">计算题</span>
-                17. 20 // 3 = <span class="red-pen"> 6 </span>，20 % 3 = <span class="red-pen"> 2 </span>，-18 // 5 = <span class="red-pen"> -4 </span>
-                <div class="explanation explanation-block">解析：整除向下取整，-3.6 向下取整为 -4。</div>
+                <p><span class="q-tag">计算题</span> 17. 20 // 3 = <span class="red-pen"> 6 </span>，20 % 3 = <span class="red-pen"> 2 </span>，-18 // 5 = <span class="red-pen"> -4 </span></p>
+                <div class="explanation">解析：整除向下取整，-3.6 向下取整为 -4。</div>
             </div>
 
             <div>
-                <span class="q-tag">填空题</span>
-                18. '356afrg'.islower() 的值为 <span class="red-pen underline"> True </span>
+                <p><span class="q-tag">填空题</span> 18. '356afrg'.islower() 的值为 <span class="red-pen underline"> True </span></p>
             </div>
 
             <div>
-                <span class="q-tag">填空题</span>
-                19. 执行语句 a, b, c = 'XYZ' 之后，变量 a 的值为 <span class="red-pen underline"> 'X' </span>
+                <p><span class="q-tag">填空题</span> 19. 执行语句 a, b, c = 'XYZ' 之后，变量 a 的值为 <span class="red-pen underline"> 'X' </span></p>
             </div>
             
             <div>
-                <span class="q-tag">判断题</span>
-                20. 表达式 'gh' in 'dfggth' 的值为 <span class="red-pen underline"> False </span>
-                <div class="explanation explanation-block">解析：原字符串中是 'gg' 不是 'gh'。</div>
+                <p><span class="q-tag">判断题</span> 20. 表达式 'gh' in 'dfggth' 的值为 <span class="red-pen underline"> False </span></p>
+                <div class="explanation">解析：原字符串中是 'gg' 不是 'gh'。</div>
             </div>
         </div>
     </div>
 
-    <!-- 第三章 -->
-    <div class="mb-6">
-        <h2 class="text-xl font-bold mb-4 border-l-4 border-gray-800 pl-3">第三章：循环与控制流</h2>
-        <div class="space-y-3">
+    <div class="mb-8">
+        <h2>第三章：循环与控制流</h2>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
             <div>
-                <span class="q-tag">填空题</span>
-                1. 循环 for i in range(2, 7, 2) 执行时，i 的值依次是？ <span class="red-pen underline"> 2, 4, 6 </span>
+                <p><span class="q-tag">填空题</span> 1. 循环 for i in range(2, 7, 2) 执行时，i 的值依次是？ <span class="red-pen underline"> 2, 4, 6 </span></p>
             </div>
 
             <div>
-                <span class="q-tag">代码题</span>
-                2. 以下代码的输出结果是? <span class="red-pen"> 报错 (TypeError) </span>
-                <div class="code-block text-xs">>>>a="3"
+                <p><span class="q-tag">代码题</span> 2. 以下代码的输出结果是? <span class="red-pen"> 报错 (TypeError) </span></p>
+                <div class="code-block">>>>a="3"
 >>>b=2
 >>>print(a+b)</div>
-                <div class="explanation explanation-block">解析：字符串不能直接与整数相加。</div>
+                <div class="explanation">解析：字符串不能直接与整数相加。</div>
             </div>
 
             <div>
-                <span class="q-tag">选择题</span>
-                3. 以下选项中，描述错误的是 (<span class="red-pen"> C </span>)
-                <div class="ml-6 text-sm text-gray-600">
-                    A. continue语句通常与循环语句一起使用<br>
-                    B. continue语句用于结束本次循环<br>
-                    C. break语句用于中断程序<br>
-                    D . break语句用于中断循环
+                <p><span class="q-tag">选择题</span> 3. 以下选项中，描述错误的是 (<span class="red-pen"> C </span>)</p>
+                <div class="grid-options" style="grid-template-columns: 1fr;">
+                    <span>A. continue语句通常与循环语句一起使用</span>
+                    <span>B. continue语句用于结束本次循环</span>
+                    <span>C. break语句用于中断程序</span>
+                    <span>D . break语句用于中断循环</span>
                 </div>
-                <div class="explanation explanation-block">解析：break是跳出循环，不是终止整个程序的运行。</div>
+                <div class="explanation">解析：break是跳出循环，不是终止整个程序的运行。</div>
             </div>
 
             <div>
-                <span class="q-tag">填空题</span>
-                4. 以下代码循环 <span class="red-pen underline"> 5 </span> 次
-                <div class="code-block text-xs">for i in range(1, 10, 2): print(i)</div>
+                <p><span class="q-tag">填空题</span> 4. 以下代码循环 <span class="red-pen underline"> 5 </span> 次</p>
+                <div class="code-block">for i in range(1, 10, 2): print(i)</div>
             </div>
 
             <div>
-                <span class="q-tag">填空题</span>
-                5. 结构化程序的三种基本控制结构是顺序、<span class="red-pen underline"> 选择 </span> 和 <span class="red-pen underline"> 循环 </span>。
+                <p><span class="q-tag">填空题</span> 5. 结构化程序的三种基本控制结构是顺序、<span class="red-pen underline"> 选择 </span> 和 <span class="red-pen underline"> 循环 </span>。</p>
             </div>
 
             <div>
-                <span class="q-tag">填空题</span>
-                6. 在循环语句中，提前进入下一次循环是哪个语句？ <span class="red-pen underline"> continue </span>
+                <p><span class="q-tag">填空题</span> 6. 在循环语句中，提前进入下一次循环是哪个语句？ <span class="red-pen underline"> continue </span></p>
             </div>
 
             <div>
-                <span class="q-tag">计算题</span>
-                7. 表达式 sum(map(int, str(36437))) 的值为 <span class="red-pen underline"> 23 </span>
-                <div class="explanation explanation-block">解析：将数字转字符串，再映射为int列表求和：3+6+4+3+7=23。</div>
+                <p><span class="q-tag">计算题</span> 7. 表达式 sum(map(int, str(36437))) 的值为 <span class="red-pen underline"> 23 </span></p>
+                <div class="explanation">解析：将数字转字符串，再映射为int列表求和：3+6+4+3+7=23。</div>
             </div>
 
             <div>
-                <span class="q-tag">代码题</span>
-                8. 以下代码的输出结果是？ <span class="red-pen"> 绿花、绿天和白云构成了美丽的画面 </span>
-                <div class="code-block text-xs">colors = ('红', '蓝')
+                <p><span class="q-tag">代码题</span> 8. 以下代码的输出结果是？ <span class="red-pen"> 绿花、绿天和白云构成了美丽的画面 </span></p>
+                <div class="code-block">colors = ('红', '蓝')
 desc = '红花、蓝天和白云构成了美丽的画面'
 for color in colors:
     if color in desc:
@@ -322,30 +369,27 @@ print(desc)</div>
             </div>
 
             <div>
-                <span class="q-tag">代码题</span>
-                9. 以下代码的输出结果是？ <span class="red-pen"> 153 </span>
-                <div class="code-block text-xs">m = 5; total, s = 1, 1
+                <p><span class="q-tag">代码题</span> 9. 以下代码的输出结果是？ <span class="red-pen"> 153 </span></p>
+                <div class="code-block">m = 5; total, s = 1, 1
 for j in range(2, m + 1):
     s *= j
     total += s
 print(total)</div>
-                <div class="explanation explanation-block">解析：计算 1! + 2! + 3! + 4! + 5! = 1 + 2 + 6 + 24 + 120 = 153。</div>
+                <div class="explanation">解析：计算 1! + 2! + 3! + 4! + 5! = 1 + 2 + 6 + 24 + 120 = 153。</div>
             </div>
 
             <div>
-                <span class="q-tag">代码题</span>
-                10. 以下代码的输出结果是？ <span class="red-pen"> 18 </span>
-                <div class="code-block text-xs">total = 0
+                <p><span class="q-tag">代码题</span> 10. 以下代码的输出结果是？ <span class="red-pen"> 18 </span></p>
+                <div class="code-block">total = 0
 for num in range(1, 11):
     if num % 3 == 0: total += num
 print(total)</div>
-                <div class="explanation explanation-block">解析：3 + 6 + 9 = 18。</div>
+                <div class="explanation">解析：3 + 6 + 9 = 18。</div>
             </div>
 
             <div>
-                <span class="q-tag">简答题</span>
-                11. 解释Python中的break和continue语句的作用，并给出一个示例。
-                <div class="red-pen explanation-block">
+                <p><span class="q-tag">简答题</span> 11. 解释Python中的break和continue语句的作用，并给出一个示例。</p>
+                <div class="red-pen-block">
                     答：<br>
                     - <strong>break</strong>：立即终止当前所在循环，跳出循环体。<br>
                     - <strong>continue</strong>：跳过本次循环剩余代码，直接进入下一次迭代。<br>
@@ -360,22 +404,21 @@ print(total)</div>
             </div>
 
             <div>
-                <span class="q-tag">简答题</span>
-                12. for循环和while循环有什么区别？
-                <div class="red-pen explanation-block">
+                <p><span class="q-tag">简答题</span> 12. for循环和while循环有什么区别？</p>
+                <div class="red-pen-block">
                     答：<br>
                     - <strong>for循环</strong>：主要用于遍历已知序列（如列表、字符串）或固定范围（range）。<br>
                     - <strong>while循环</strong>：主要用于在满足特定条件时重复执行，直到条件不再满足，通常用于循环次数不确定的情况。
                 </div>
             </div>
 
-            <div class="book-problem page-break-inside-avoid">
-                <div class="font-bold text-blue-800 flex items-center gap-2 mb-2">
+            <div class="book-problem">
+                <div style="font-weight: bold; color: #1e40af; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
                     <span class="material-symbols-outlined">menu_book</span> 书本 P79 (2) 编程题
                 </div>
-                <div class="text-sm mb-2">要求：<br>1. 筛选面试者（计算机&lt;25，电子经验>4，通信无要求）。<br>2. 输出2000-3000年所有闰年。</div>
-                <div class="red-pen explanation-block">
-<pre class="code-block font-sans">
+                <div style="font-size: 0.875rem; margin-bottom: 0.5rem;">要求：<br>1. 筛选面试者（计算机&lt;25，电子经验>4，通信无要求）。<br>2. 输出2000-3000年所有闰年。</div>
+                <div class="red-pen-block">
+<pre style="font-family: inherit; margin: 0;">
 # 1. 面试筛选
 age = int(input("年龄:")); major = input("专业:"); exp = int(input("经验:"))
 if (major == "计算机" and age < 25) or \
@@ -395,88 +438,75 @@ for y in range(2000, 3001):
         </div>
     </div>
 
-    <!-- 第四章 -->
-    <div class="mb-6">
-        <h2 class="text-xl font-bold mb-4 border-l-4 border-gray-800 pl-3">第四章：函数</h2>
-        <div class="space-y-3">
+    <div class="mb-8">
+        <h2>第四章：函数</h2>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
             <div>
-                <span class="q-tag">填空题</span>
-                1. 定义函数时，若希望参数为可选参数，应使用 <span class="red-pen underline"> 默认参数 (Default Argument) </span>
+                <p><span class="q-tag">填空题</span> 1. 定义函数时，若希望参数为可选参数，应使用 <span class="red-pen underline"> 默认参数 (Default Argument) </span></p>
             </div>
             <div>
-                <span class="q-tag">判断题</span>
-                2. 函数不一定必须有 return 语句， return可以返回多个值，以元组形式存储。函数返回值也可以是列表。 <span class="red-pen underline"> ( √ ) </span>
+                <p><span class="q-tag">判断题</span> 2. 函数不一定必须有 return 语句， return可以返回多个值，以元组形式存储。函数返回值也可以是列表。 <span class="red-pen underline"> ( √ ) </span></p>
             </div>
             <div>
-                <span class="q-tag">代码阅读</span>
-                3. 递归函数来计算阶乘？ <span class="red-pen"> 是，这是递归结构 </span>
-                <div class="code-block text-xs">def factorial(n):
+                <p><span class="q-tag">代码阅读</span> 3. 递归函数来计算阶乘？ <span class="red-pen"> 是，这是递归结构 </span></p>
+                <div class="code-block">def factorial(n):
     if n == 0: return 1
     else: return n * factorial(n-1)</div>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                4. Python中，函数定义可以不包括？ <span class="red-pen underline"> 可选参数列表 / return语句 </span>
+                <p><span class="q-tag">填空题</span> 4. Python中，函数定义可以不包括？ <span class="red-pen underline"> 可选参数列表 / return语句 </span></p>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                5. 关于函数的关键字参数使用限制，函数定义时，关键字参数必须位于位置参数 <span class="red-pen underline"> 之后 </span>。
+                <p><span class="q-tag">填空题</span> 5. 关于函数的关键字参数使用限制，函数定义时，关键字参数必须位于位置参数 <span class="red-pen underline"> 之后 </span>。</p>
             </div>
             <div>
-                <span class="q-tag">计算题</span>
-                6. 已知 f = lambda x: x+3，那么表达式 f(3) 的值为 <span class="red-pen underline"> 6 </span>。
+                <p><span class="q-tag">计算题</span> 6. 已知 f = lambda x: x+3，那么表达式 f(3) 的值为 <span class="red-pen underline"> 6 </span>。</p>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                7. 若使demo函数中的x来自全局变量x，则空格处应填入 <span class="red-pen underline"> global x </span>。
+                <p><span class="q-tag">填空题</span> 7. 若使demo函数中的x来自全局变量x，则空格处应填入 <span class="red-pen underline"> global x </span>。</p>
             </div>
             <div>
-                <span class="q-tag">代码题</span>
-                8. 以下代码的输出结果是？ <span class="red-pen"> (2, 9) </span>
-                <div class="code-block text-xs"># 统计 'I like Myself!'
+                <p><span class="q-tag">代码题</span> 8. 以下代码的输出结果是？ <span class="red-pen"> (2, 9) </span></p>
+                <div class="code-block"># 统计 'I like Myself!'
 # isupper() -> res[0] (I, M -> 2个)
 # islower() -> res[1] (likeyself -> 9个)
 print(fun('I like Myself!'))</div>
             </div>
             <div>
-                <span class="q-tag">代码题</span>
-                9. 以下代码的输出结果是？ <span class="red-pen"> 720 </span>
-                <div class="text-xs text-gray-600">print(fat(6)) # 6的阶乘</div>
+                <p><span class="q-tag">代码题</span> 9. 以下代码的输出结果是？ <span class="red-pen"> 720 </span></p>
+                <div style="font-size: 0.85rem; color: #4b5563; margin-left: 1.5rem;">print(fat(6)) # 6的阶乘</div>
             </div>
             <div>
-                <span class="q-tag">代码题</span>
-                10. 以下代码的输出结果是？ <span class="red-pen"> [33, 44] </span>
-                <div class="code-block text-xs">dds = [23, 22, 33, 44]  
+                <p><span class="q-tag">代码题</span> 10. 以下代码的输出结果是？ <span class="red-pen"> [33, 44] </span></p>
+                <div class="code-block">dds = [23, 22, 33, 44]  
 dds.insert(1, 25) # [23, 25, 22, 33, 44]
 dds.pop(2)        # 删掉22 -> [23, 25, 33, 44]
 dds.append(40)    # [23, 25, 33, 44, 40]
 print(dds[2:4])   # 下标2,3 -> [33, 44]</div>
             </div>
             
-            <div class="book-problem page-break-inside-avoid">
-                <div class="font-bold text-blue-800 flex items-center gap-2 mb-2">
+            <div class="book-problem">
+                <div style="font-weight: bold; color: #1e40af; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
                     <span class="material-symbols-outlined">menu_book</span> 书本 P95 递归
                 </div>
-                <div><span class="q-tag">简答题</span> 每个递归函数的两个主要部分？</div>
-                <div class="red-pen explanation-block">
+                <p><span class="q-tag">简答题</span> 每个递归函数的两个主要部分？</p>
+                <div class="red-pen-block">
                     1. <strong>基准情形 (Base Case)</strong>：递归的终止条件。<br>
                     2. <strong>递归步骤 (Recursive Step)</strong>：将问题分解并调用自身。
                 </div>
             </div>
 
             <div>
-                <span class="q-tag">简答题</span>
-                变量作用域中局部变量和全局变量的区别?
-                <div class="red-pen explanation-block">
+                <p><span class="q-tag">简答题</span> 变量作用域中局部变量和全局变量的区别?</p>
+                <div class="red-pen-block">
                     - <strong>局部变量</strong>：在函数内部定义，只在函数内有效，函数结束即销毁。<br>
                     - <strong>全局变量</strong>：在模块层级定义，整个程序生命周期内有效。函数内修改全局变量需用 global。
                 </div>
             </div>
             <div>
-                <span class="q-tag">编程题</span>
-                编写一个函数，参数为一个整数，如果该数为偶数，返回True，否则返回False，并完成函数调用。
-                <div class="red-pen explanation-block">
-<pre class="code-block font-sans">
+                <p><span class="q-tag">编程题</span> 编写一个函数，参数为一个整数，如果该数为偶数，返回True，否则返回False，并完成函数调用。</p>
+                <div class="red-pen-block">
+<pre style="font-family: inherit; margin: 0;">
 def is_even(num):
     return num % 2 == 0
 
@@ -488,74 +518,64 @@ print(is_even(10)) # True
         </div>
     </div>
 
-    <!-- 第五章 -->
-    <div class="mb-6">
-        <h2 class="text-xl font-bold mb-4 border-l-4 border-gray-800 pl-3">第五章：组合数据类型</h2>
-        <div class="space-y-3">
+    <div class="mb-8">
+        <h2>第五章：组合数据类型</h2>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
             <div>
-                <span class="q-tag">填空题</span>
-                1. 已知x = [1，2，3]，执行语句x.append（4）之后x的值是 <span class="red-pen underline"> [1, 2, 3, 4] </span>
+                <p><span class="q-tag">填空题</span> 1. 已知x = [1，2，3]，执行语句x.append（4）之后x的值是 <span class="red-pen underline"> [1, 2, 3, 4] </span></p>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                2. 列表a = [1,2,3,4]，执行a.pop(1)后，a 的值是 <span class="red-pen underline"> [1, 3, 4] </span>
+                <p><span class="q-tag">填空题</span> 2. 列表a = [1,2,3,4]，执行a.pop(1)后，a 的值是 <span class="red-pen underline"> [1, 3, 4] </span></p>
             </div>
             <div>
-                <span class="q-tag">判断题</span>
-                3. 元组与列表的主要区别是元组元素不可修改。 <span class="red-pen underline"> ( √ ) </span>
+                <p><span class="q-tag">判断题</span> 3. 元组与列表的主要区别是元组元素不可修改。 <span class="red-pen underline"> ( √ ) </span></p>
             </div>
             <div>
-                <span class="q-tag">选择题</span>
-                4. 若tup=(1,2,3) ，则下列选项中不合法的操作是 (<span class="red-pen"> C </span>)
-                <div class="ml-6 text-sm text-gray-600">A. tup[1:-1] &nbsp; B. a*32 &nbsp; C. a[1]=3 &nbsp; D. list(tup)</div>
-                <div class="explanation explanation-block">解析：元组不可赋值修改。</div>
+                <p><span class="q-tag">选择题</span> 4. 若tup=(1,2,3) ，则下列选项中不合法的操作是 (<span class="red-pen"> C </span>)</p>
+                <div class="grid-options">
+                    <span>A. tup[1:-1]</span><span>B. a*32</span><span>C. a[1]=3</span><span>D. list(tup)</span>
+                </div>
+                <div class="explanation">解析：元组不可赋值修改。</div>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                5. 元组t = (5,)的长度是 <span class="red-pen underline"> 1 </span>
+                <p><span class="q-tag">填空题</span> 5. 元组t = (5,)的长度是 <span class="red-pen underline"> 1 </span></p>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                6. 表达式[4, 2, 2, 7, 1][-2:]的值为 <span class="red-pen underline"> [7, 1] </span>
+                <p><span class="q-tag">填空题</span> 6. 表达式[4, 2, 2, 7, 1][-2:]的值为 <span class="red-pen underline"> [7, 1] </span></p>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                7. 列表nums = [3, 6, 2, 7]，执行sorted(nums)后，nums 的值是 <span class="red-pen underline"> [3, 6, 2, 7] </span>
-                <div class="explanation explanation-block">解析：注意！sorted()返回新列表，不会改变原列表nums。如果是nums.sort()则会改变。</div>
+                <p><span class="q-tag">填空题</span> 7. 列表nums = [3, 6, 2, 7]，执行sorted(nums)后，nums 的值是 <span class="red-pen underline"> [3, 6, 2, 7] </span></p>
+                <div class="explanation">解析：注意！sorted()返回新列表，不会改变原列表nums。如果是nums.sort()则会改变。</div>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                8. 列表生成式[j*3 for j in range(4)]的结果是 <span class="red-pen underline"> [0, 3, 6, 9] </span>
+                <p><span class="q-tag">填空题</span> 8. 列表生成式[j*3 for j in range(4)]的结果是 <span class="red-pen underline"> [0, 3, 6, 9] </span></p>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                9. [1,3,2,6,4][::3]的值为 <span class="red-pen underline"> [1, 6] </span>
+                <p><span class="q-tag">填空题</span> 9. [1,3,2,6,4][::3]的值为 <span class="red-pen underline"> [1, 6] </span></p>
             </div>
             <div>
-                <span class="q-tag">代码题</span>
-                10. 以下代码的输出结果是? <span class="red-pen"> [1, 2, 4, 8, 16, 32] </span>
-                <div class="code-block text-xs">n = 32; factors = []
+                <p><span class="q-tag">代码题</span> 10. 以下代码的输出结果是? <span class="red-pen"> [1, 2, 4, 8, 16, 32] </span></p>
+                <div class="code-block">n = 32; factors = []
 for i in range(1, n+1):
      if n % i == 0: factors.append(i)
 print(factors)</div>
             </div>
             <div>
-                <span class="q-tag">简答题</span>
-                列表和元组的相同点和不同点，并给出示例代码创建一个列表和一个元组。
-                <div class="red-pen explanation-block">
+                <p><span class="q-tag">简答题</span> 列表和元组的相同点和不同点，并给出示例代码创建一个列表和一个元组。</p>
+                <div class="red-pen-block">
                     - <strong>相同</strong>：有序、可迭代、支持切片和索引。<br>
                     - <strong>不同</strong>：列表(List)可变，用[]; 元组(Tuple)不可变，用()。<br>
-                    <span class="font-sans">my_list = [1, 2]; my_tuple = (1, 2)</span>
+                    <span style="font-family: monospace;">my_list = [1, 2]; my_tuple = (1, 2)</span>
                 </div>
             </div>
             
-            <div class="book-problem page-break-inside-avoid">
-                <div class="font-bold text-blue-800 flex items-center gap-2 mb-2">
+            <div class="book-problem">
+                <div style="font-weight: bold; color: #1e40af; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
                     <span class="material-symbols-outlined">menu_book</span> 书本 P145 (5)+(6) 编程题
                 </div>
-                <div><span class="q-tag">编程题</span> (5) 找出1000-5000内不能被10以内素数整除的数。<br>(6) 运动会统计（嵌套列表）。</div>
-                <div class="red-pen explanation-block">
-<pre class="code-block font-sans">
+                <p><span class="q-tag">编程题</span> (5) 找出1000-5000内不能被10以内素数整除的数。<br>(6) 运动会统计（嵌套列表）。</p>
+                <div class="red-pen-block">
+<pre style="font-family: inherit; margin: 0;">
 # (5) 
 import random
 nums = [random.randint(1000, 5000) for _ in range(20)]
@@ -572,73 +592,60 @@ print(res)
         </div>
     </div>
 
-    <!-- 第六章 -->
-    <div class="mb-6">
-        <h2 class="text-xl font-bold mb-4 border-l-4 border-gray-800 pl-3">第六章：字典与集合</h2>
-        <div class="space-y-3">
+    <div class="mb-8">
+        <h2>第六章：字典与集合</h2>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
             <div>
-                <span class="q-tag">简答题</span>
-                1. 在 Python 中,如何访问字典中的值? <span class="red-pen underline"> 字典名[键] 或 字典名.get(键) </span>
+                <p><span class="q-tag">简答题</span> 1. 在 Python 中,如何访问字典中的值? <span class="red-pen underline"> 字典名[键] 或 字典名.get(键) </span></p>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                2. 字典dic = {"name":"Zhangsan", "age":23}，获取 "age" 对应的值的方式是? <span class="red-pen underline"> dic["age"] </span>
+                <p><span class="q-tag">填空题</span> 2. 字典dic = {"name":"Zhangsan", "age":23}，获取 "age" 对应的值的方式是? <span class="red-pen underline"> dic["age"] </span></p>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                3. 字典dic = {"id": 2311, "name": "Mike"}，删除 "id" 键的语句是? <span class="red-pen underline"> del dic["id"] </span>
+                <p><span class="q-tag">填空题</span> 3. 字典dic = {"id": 2311, "name": "Mike"}，删除 "id" 键的语句是? <span class="red-pen underline"> del dic["id"] </span></p>
             </div>
             <div>
-                <span class="q-tag">计算题</span>
-                4. S1={1,2,3,4,5}，S2={4,5,6}<br>
+                <p><span class="q-tag">计算题</span> 4. S1={1,2,3,4,5}，S2={4,5,6}<br>
                 S1|S2 = <span class="red-pen"> {1,2,3,4,5,6} </span>; S1&S2 = <span class="red-pen"> {4,5} </span>; <br>
-                S1^S2 = <span class="red-pen"> {1,2,3,6} </span>; S1-S2 = <span class="red-pen"> {1,2,3} </span>
+                S1^S2 = <span class="red-pen"> {1,2,3,6} </span>; S1-S2 = <span class="red-pen"> {1,2,3} </span></p>
             </div>
             <div>
-                <span class="q-tag">代码题</span>
-                5. 以下代码的输出结果是 <span class="red-pen"> {'A':1, 'p':2, 'l':1, 'e':1} </span>
-                <div class="code-block text-xs">z = 'Apple'; c = dict()                  
+                <p><span class="q-tag">代码题</span> 5. 以下代码的输出结果是 <span class="red-pen"> {'A':1, 'p':2, 'l':1, 'e':1} </span></p>
+                <div class="code-block">z = 'Apple'; c = dict()                  
 for ch in z: c[ch] = c.get(ch, 0) + 1
 print(c)</div>
             </div>
             <div>
-                <span class="q-tag">代码题</span>
-                6. 以下代码的输出结果是 <span class="red-pen"> Unknow </span>
-                <div class="code-block text-xs">info = {"city": "Beijing", "zipcode": 100000}
+                <p><span class="q-tag">代码题</span> 6. 以下代码的输出结果是 <span class="red-pen"> Unknow </span></p>
+                <div class="code-block">info = {"city": "Beijing", "zipcode": 100000}
 if "country" in info: ... else: print("Unknow")</div>
             </div>
             <div>
-                <span class="q-tag">代码题</span>
-                7. 以下代码的输出结果是 <span class="red-pen"> Python编程 65 </span>
-                <div class="ml-6 text-xs text-gray-600">book["price"] = 65; print(title, price)</div>
+                <p><span class="q-tag">代码题</span> 7. 以下代码的输出结果是 <span class="red-pen"> Python编程 65 </span></p>
+                <div style="font-size: 0.85rem; color: #4b5563; margin-left: 1.5rem;">book["price"] = 65; print(title, price)</div>
             </div>
             <div>
-                <span class="q-tag">简答题</span>
-                字典和集合的相同点和不同点，并给出一个示例代码。
-                <div class="red-pen explanation-block">
+                <p><span class="q-tag">简答题</span> 字典和集合的相同点和不同点，并给出一个示例代码。</p>
+                <div class="red-pen-block">
                     - <strong>相同</strong>：都用{}表示，都是无序的（Python 3.7+字典有序，但理论上视为映射），都不可重复（字典key，集合元素）。<br>
                     - <strong>不同</strong>：字典是键值对(Key-Value)；集合是单一元素(Value)。<br>
-                    <span class="font-sans">d = {"k":1}; s = {1, 2}</span>
+                    <span style="font-family: monospace;">d = {"k":1}; s = {1, 2}</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 第七章 -->
-    <div class="mb-6">
-        <h2 class="text-xl font-bold mb-4 border-l-4 border-gray-800 pl-3">第七章：文件与异常</h2>
-        <div class="space-y-3">
+    <div class="mb-8">
+        <h2>第七章：文件与异常</h2>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
             <div>
-                <span class="q-tag">填空题</span>
-                1. 在 Python 中,用来异常的捕获和处理的关键字是？ <span class="red-pen underline"> try ... except </span>
+                <p><span class="q-tag">填空题</span> 1. 在 Python 中,用来异常的捕获和处理的关键字是？ <span class="red-pen underline"> try ... except </span></p>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                2. 打开文件时，模式"r"表示？ <span class="red-pen underline"> 只读 (Read only) </span>
+                <p><span class="q-tag">填空题</span> 2. 打开文件时，模式"r"表示？ <span class="red-pen underline"> 只读 (Read only) </span></p>
             </div>
             <div>
-                <span class="q-tag">填空题</span>
-                3. 处理可能出现的除以 0 错误，应使用什么语句？ <span class="red-pen underline"> except ZeroDivisionError: </span>
+                <p><span class="q-tag">填空题</span> 3. 处理可能出现的除以 0 错误，应使用什么语句？ <span class="red-pen underline"> except ZeroDivisionError: </span></p>
             </div>
         </div>
     </div>
@@ -652,7 +659,7 @@ if "country" in info: ... else: print("Unknow")</div>
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'Python_Review_Full.html';
+        a.download = 'Python_Review_Fixed_Style.html';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -660,17 +667,32 @@ if "country" in info: ... else: print("Unknow")</div>
     }
 
     function toggleAnswers() {
-        const answers = document.querySelectorAll('.red-pen');
+        const inlineAnswers = document.querySelectorAll('.red-pen');
+        const blockAnswers = document.querySelectorAll('.red-pen-block');
+        const explanations = document.querySelectorAll('.explanation');
         const btnText = document.getElementById('toggle-text');
         
         let isHidden = false;
-        if (answers.length > 0) {
-            // check first element state
-            isHidden = answers[0].style.visibility === 'hidden';
+        // Check state based on first element
+        if (inlineAnswers.length > 0) {
+            isHidden = inlineAnswers[0].style.visibility === 'hidden';
+        } else if (blockAnswers.length > 0) {
+             isHidden = blockAnswers[0].style.display === 'none';
         }
 
-        answers.forEach(el => {
+        // Toggle inline answers (visibility)
+        inlineAnswers.forEach(el => {
             el.style.visibility = isHidden ? 'visible' : 'hidden';
+        });
+
+        // Toggle block answers (display)
+        blockAnswers.forEach(el => {
+            el.style.display = isHidden ? 'block' : 'none';
+        });
+        
+        // Toggle explanations (display)
+        explanations.forEach(el => {
+            el.style.display = isHidden ? 'block' : 'none';
         });
         
         btnText.innerText = isHidden ? "显示/隐藏答案与解析" : "显示答案";
